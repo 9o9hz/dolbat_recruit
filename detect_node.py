@@ -7,8 +7,7 @@ from ultralytics import YOLO
 # =========================
 # 설정 (YOLO)
 # =========================
-MODEL_PATH = "/home/j/yolo_face/yolov8n-face.pt"  # ✅ 절대경로로 고정
-MIN_AREA_RATIO = 0.04
+MODEL_PATH = "/home/j/yolo_face/yolov8n-face.pt"  #절대경로
 MIN_WIDTH_RATIO = 0.18
 CONF_THRES = 0.25
 IOU_THRES = 0.45
@@ -24,8 +23,6 @@ FPS = 30
 print("PWD:", os.getcwd())
 print("MODEL_PATH:", MODEL_PATH)
 print("EXISTS:", os.path.exists(MODEL_PATH))
-
-# ✅ YOLO 모델 로드 (딱 1번만!)
 yolo_model = YOLO(MODEL_PATH)
 
 # =========================
@@ -110,11 +107,10 @@ def process_combined(frame):
         x1, y1, x2, y2 = box.xyxy[0].tolist()
         bw, bh = x2 - x1, y2 - y1
 
-        # 가까운 얼굴만(너가 잡아둔 조건 유지)
+        # 가까운 얼굴만
         if (bw * bh) / (W * H) < MIN_AREA_RATIO and (bw / W) < MIN_WIDTH_RATIO:
             continue
 
-        # ✅ 박스 두께 확 올리기
         cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), FACE_COLOR, 6)
 
         # ✅ 라벨 배경 채우기 (가독성 상승)
