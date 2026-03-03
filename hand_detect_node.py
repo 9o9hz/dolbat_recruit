@@ -2,6 +2,19 @@ import cv2
 import mediapipe as mp
 import math
 
+import os
+from ultrtralytics import YOLO  # 이미 있으면 그대로
+
+MODEL_PATH = "/home/j/yolo_face/yolov8n-face.pt"
+
+print("PWD:", os.getcwd())
+print("MODEL_PATH:", MODEL_PATH)
+print("EXISTS:", os.path.exists(MODEL_PATH))
+
+yolo_model = YOLO(MODEL_PATH)
+
+
+
 # ====== 카메라 설정 ====== 
 # CAM_DEV_1 정의를 삭제하고 CAM_DEV_2만 남깁니다.
 CAM_DEV_2 = "/dev/video0"

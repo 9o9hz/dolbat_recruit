@@ -2,6 +2,9 @@ import cv2
 from ultralytics import YOLO
 import sys
 
+MODEL_PATH = "/home/j/yolo_face/yolov8n-face.pt"
+yolo_model = YOLO(MODEL_PATH)
+
 # ====== 하드웨어 강제 고정 ======
 CAM_DEV = "/dev/video2"  # 컴퓨터 내장 웹캠
 MODEL_PATH = "./yolov8n-face.pt"
